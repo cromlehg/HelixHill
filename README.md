@@ -19,7 +19,6 @@ Each stage has a direct minting function in wei. This is made to support the ext
 
 ### Contracts contains
 1. _Token_ - Token contract
-2. _PreITO_ - PreITO contract
 3. _ITO_ - ITO contract
 4. _Configurator_ - contract with main configuration for production
 
