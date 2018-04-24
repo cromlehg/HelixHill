@@ -66,8 +66,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 
 ### Links
 1. _Token_ - 
-2. _PreITO_ -
-3. _ITO_ -
+2. _ITO_ -
 
 ### Features
 * Manually mint tokens by owner or sale agent at any time until token minting finished. 
@@ -82,23 +81,15 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Start_                       : Jule 03 2018 13-00 GMT
 * _Wallet_                      : 0x3047e47EfC33cF8f6F9C3bdD1ACcaEda75B66f2A
 
-##### Milestones
 1. 90 days, 5000 tokens per ETH, 5000 ETH
-
-#### ITO
-* _Minimal insvested limit_     : 0.1 ETH
-* _Start_                       : Oct 27 2018 13-00 GMT
-* _Wallet_                      : 0xC82a75f20B94DD6E043569E03A3eeE91A2B1bEfe
- 
-##### Milestones
-1. 30 days, 2000 tokens per ETH, 1000 ETH
-2. 30 days, 1950 tokens per ETH, 1000 ETH
-3. 30 days, 1800 tokens per ETH, 2000 ETH
-4. 30 days, 1750 tokens per ETH, 3000 ETH
-5. 30 days, 1600 tokens per ETH, 3500 ETH
-6. 30 days, 1550 tokens per ETH, 4000 ETH
-7. 30 days, 1500 tokens per ETH, 4500 ETH
-8. 30 days, 1450 tokens per ETH, 5000 ETH
-9. 30 days, 1400 tokens per ETH, 6000 ETH
-10. 30 days, 1000 tokens per ETH, 8000 ETH
+2. 30 days, 2000 tokens per ETH, 1000 ETH
+3. 30 days, 1950 tokens per ETH, 1000 ETH
+4. 30 days, 1800 tokens per ETH, 2000 ETH
+5. 30 days, 1750 tokens per ETH, 3000 ETH
+6. 30 days, 1600 tokens per ETH, 3500 ETH
+7. 30 days, 1550 tokens per ETH, 4000 ETH
+8. 30 days, 1500 tokens per ETH, 4500 ETH
+9. 30 days, 1450 tokens per ETH, 5000 ETH
+10. 30 days, 1400 tokens per ETH, 6000 ETH
+11. 30 days, 1000 tokens per ETH, 8000 ETH
 
