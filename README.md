@@ -70,7 +70,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 ### Features
 * Manually mint tokens by owner or sale agent at any time until token minting finished. 
 * Manually mint tokens in ether value by owner or sale agent at corresponding sale contract during current sale processing.  
-* Can stop by owner
+* Can pause by owner
 
 ### Crowdsale stages
 
