@@ -88,4 +88,19 @@ contract TimeCountBonusFeature is CommonSale {
     revert();
   }
 
+  function calculateTokens(uint _invested) internal returns(uint) {
+    uint milestoneIndex = currentMilestone();
+    Milestone storage milestone = milestones[milestoneIndex];
+    uint tokens = milestone.price.mul(_invested).div(1 ether);
+
+    // update milestone
+    milestone.invested = milestone.invested.add(_invested);
+    if(milestone.invested >= milestone.hardcap) {
+      milestone.closed = now;
+    }
+
+    return tokens;
+  }
+
+
 }
