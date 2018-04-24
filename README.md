@@ -7,7 +7,7 @@
 * _[Ticker](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#symbol)_        : HILL
 * _[Decimals](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#decimals)_    : 18
 * _Emission_                                                                            : Mintable
-* _Crowdsales_                                                                          : 2
+* _Crowdsales_                                                                          : 1
 * _Fiat dependency_                                                                     : No
 * _Tokens locked_                                                                       : Yes
 
@@ -70,11 +70,11 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 ### Features
 * Manually mint tokens by owner or sale agent at any time until token minting finished. 
 * Manually mint tokens in ether value by owner or sale agent at corresponding sale contract during current sale processing.  
-* Can pause by owner
+* Can paused/continued by owner
 
 ### Crowdsale stages
 
-#### PreITO
+#### ITO
 * _Minimal insvested limit_     : 0.1 ETH
 * _Softcap_                     : 2000 ETH
 * _Start_                       : Jule 03 2018 13-00 GMT
