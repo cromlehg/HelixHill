@@ -6,8 +6,9 @@ import './MintableToken.sol';
 import './WalletProvider.sol';
 import './InvestedProvider.sol';
 import './RetrieveTokensFeature.sol';
+import './MintTokensFeature.sol';
 
-contract CommonSale is InvestedProvider, WalletProvider, PercentRateFeature, RetrieveTokensFeature {
+contract CommonSale is InvestedProvider, WalletProvider, PercentRateFeature, RetrieveTokensFeature, MintTokensFeature {
 
   using SafeMath for uint;
 
@@ -19,7 +20,7 @@ contract CommonSale is InvestedProvider, WalletProvider, PercentRateFeature, Ret
 
   uint public minInvestedLimit;
 
-  MintableToken public token;
+  //MintableToken public token;
 
   uint public hardcap;
 
@@ -58,22 +59,24 @@ contract CommonSale is InvestedProvider, WalletProvider, PercentRateFeature, Ret
     price = newPrice;
   }
 
+  /*
   function setToken(address newToken) public onlyOwner {
     token = MintableToken(newToken);
   }
+  */
 
   function calculateTokens(uint _invested) internal returns(uint);
 
   function mintTokensExternal(address to, uint tokens) public onlyDirectMintAgentOrOwner {
     mintTokens(to, tokens);
   }
-
+/*
   function mintTokens(address to, uint tokens) internal {
     token.mint(this, tokens);
     token.transfer(to, tokens);
   }
-
-  function endSaleDate() public returns(uint);
+*/
+  function endSaleDate() public view returns(uint);
 
   function mintTokensByETHExternal(address to, uint _invested) public onlyDirectMintAgentOrOwner returns(uint) {
     return mintTokensByETH(to, _invested);

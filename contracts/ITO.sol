@@ -22,4 +22,9 @@ contract ITO is ExtendedWalletsMintTokensFeature, SoftcapFeature, AssembledCommo
     }
   }
 
+  function fallback() internal minInvestLimited(msg.value) returns(uint) {
+    require(now >= start && now < endSaleDate());
+    return mintTokensByETH(msg.sender, msg.value);
+  }
+
 }

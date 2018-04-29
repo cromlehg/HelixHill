@@ -73,8 +73,8 @@ contract TimeCountBonusFeature is CommonSale {
     period = 0;
   }
 
-  function endSaleDate() public returns(uint) {
-    return start + period * 1 days;
+  function endSaleDate() public view returns(uint) {
+    return start.add(period * 1 days);
   }
 
   function currentMilestone() public constant returns(uint) {
