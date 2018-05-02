@@ -7,6 +7,7 @@ import refundable from './ito/refundable';
 import common from './ito/common';
 import bounty from './ito/bounty';
 import milestonebonus from './ito/milestonebonus';
+import hardcapmilestonebonus from './ito/hardcapmilestonebonus';
 import additional from './ito/additional';
 
 const token = artifacts.require('Token.sol');
@@ -31,6 +32,11 @@ contract('ITO - bounty test', function (accounts) {
 contract('ITO - milestonebonus features test', function (accounts) {
   before(config);
   milestonebonus(token, crowdsale, accounts);
+});
+
+contract('ITO - hardcap milestonebonus features test', function (accounts) {
+  before(config);
+  hardcapmilestonebonus(token, crowdsale, accounts);
 });
 
 contract('ITO - additional features test', function (accounts) {

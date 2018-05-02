@@ -3,6 +3,7 @@ import tokens from '../helpers/tokens';
 import {advanceBlock} from '../helpers/advanceToBlock';
 import {increaseTimeTo, duration} from '../helpers/increaseTime';
 import latestTime from '../helpers/latestTime';
+import EVMRevert from '../helpers/EVMRevert';
 
 require('chai')
   .use(require('chai-as-promised'))
@@ -60,13 +61,18 @@ export default function (Token, Crowdsale, wallets) {
   });
 
   milestones.forEach((milestone, i) => {
-    it(`price should be ${milestone.price / 1000000000000000000} tokens per eth for milestone #${i}`, async function () {
-      await increaseTimeTo(latestTime() + duration.days(milestone.day));
-      await crowdsale.sendTransaction({value: ether(1), from: wallets[i]});
+    it(`price should be ${milestone.price / 1000000000000000000} tokens per eth for milestone #${i}, hardcap is reached`, async function () {
+      const investment = milestone.hardcap;
+      await crowdsale.sendTransaction({value: investment, from: wallets[i]});
       const balance = await token.balanceOf(wallets[i]);
-      const value = milestone.price;
+      const value = investment.mul(milestone.price).div(ether(1));
       balance.should.be.bignumber.equal(value);
     });
+  });
+
+  it(`should reject payments when total hardcap is reached`, async function () {
+    const investment = ether(1);
+    await crowdsale.sendTransaction({value: investment, from: wallets[11]}).should.be.rejectedWith(EVMRevert);
   });
 
 }
