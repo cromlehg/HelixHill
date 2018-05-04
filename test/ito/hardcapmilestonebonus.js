@@ -10,9 +10,10 @@ require('chai')
   .use(require('chai-bignumber')(web3.BigNumber))
   .should();
 
-export default function (Token, Crowdsale, wallets) {
+export default function (Token, Crowdsale, TeamWallet, wallets) {
   let token;
   let crowdsale;
+  let teamwallet;
   const milestones = [
     {hardcap: ether(5000), price: tokens(5000), day: 114},
     {hardcap: ether(1000), price: tokens(2000), day: 29},
@@ -35,6 +36,7 @@ export default function (Token, Crowdsale, wallets) {
   before(async function () {
     token = await Token.new();
     crowdsale = await Crowdsale.new();
+    teamwallet = await TeamWallet.new();
     await token.setSaleAgent(crowdsale.address);
     await crowdsale.setToken(token.address);
     await crowdsale.setStart(latestTime());
@@ -54,10 +56,13 @@ export default function (Token, Crowdsale, wallets) {
     await crowdsale.setWallet(this.wallet);    
     await crowdsale.addWallet(this.AdvisorsTokensWallet, this.AdvisorsTokensPercent);
     await crowdsale.addWallet(this.BountyTokensWallet, this.BountyTokensPercent);   
-    await crowdsale.addWallet(this.TeamTokensWallet, this.TeamTokensPercent);
+    await crowdsale.addWallet(teamwallet.address, this.TeamTokensPercent);
     await crowdsale.addWallet(this.EndusersTokensWallet, this.EndusersTokensPercent);
     await crowdsale.setPercentRate(this.PercentRate);
-    //await crowdsale.lockAddress(this.TeamTokensWallet, 180);
+    await crowdsale.setTeamWallet(teamwallet.address);
+    await teamwallet.setToken(token.address);
+    await teamwallet.setCrowdsale(crowdsale.address);
+    await teamwallet.setLockPeriod(180);
   });
 
   milestones.forEach((milestone, i) => {

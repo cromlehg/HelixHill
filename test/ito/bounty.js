@@ -10,9 +10,10 @@ require('chai')
   .use(require('chai-bignumber')(web3.BigNumber))
   .should();
 
-export default function (Token, Crowdsale, wallets) {
+export default function (Token, Crowdsale, TeamWallet, wallets) {
   let token;
   let crowdsale;
+  let teamwallet;
 
   before(async function () {
     // Advance to the next block to correctly read time in the solidity "now" function interpreted by testrpc
@@ -22,6 +23,7 @@ export default function (Token, Crowdsale, wallets) {
   beforeEach(async function () {
     token = await Token.new();
     crowdsale = await Crowdsale.new();
+    teamwallet = await TeamWallet.new();
     await token.setSaleAgent(crowdsale.address);
     await crowdsale.setToken(token.address);
     await crowdsale.setStart(latestTime());
@@ -44,7 +46,10 @@ export default function (Token, Crowdsale, wallets) {
     await crowdsale.addWallet(wallets[5], this.TeamTokensPercent);
     await crowdsale.addWallet(wallets[6], this.EndusersTokensPercent);
     await crowdsale.setPercentRate(this.PercentRate);
-    //await crowdsale.lockAddress(wallets[5], 180);
+    await crowdsale.setTeamWallet(teamwallet.address);
+    await teamwallet.setToken(token.address);
+    await teamwallet.setCrowdsale(crowdsale.address);
+    await teamwallet.setLockPeriod(180);
   });
 
   it('should correctly calculate bonuses for advisors, bounty, team, end-users wallets', async function () {

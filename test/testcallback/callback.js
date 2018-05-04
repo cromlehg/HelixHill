@@ -11,9 +11,10 @@ const should = require('chai')
   .use(require('chai-bignumber')(web3.BigNumber))
   .should();
 
-export default function (Token, Crowdsale, CallbackTest, wallets) {
+export default function (Token, Crowdsale, TeamWallet, CallbackTest, wallets) {
   let token;
   let crowdsale;
+  let teamwallet;
   let callbacktest;
 
   before(async function () {
@@ -24,6 +25,7 @@ export default function (Token, Crowdsale, CallbackTest, wallets) {
   beforeEach(async function () {
     token = await Token.new();
     crowdsale = await Crowdsale.new();
+    teamwallet = await TeamWallet.new();
     callbacktest = await CallbackTest.new();
     await token.setSaleAgent(crowdsale.address);
     await crowdsale.setToken(token.address);
@@ -44,12 +46,15 @@ export default function (Token, Crowdsale, CallbackTest, wallets) {
     await crowdsale.addMilestone(6000, tokens(1400), 30);
     await crowdsale.addMilestone(8000, tokens(1000), 30);
     await crowdsale.setWallet(this.wallet);    
-    await crowdsale.addWallet(this.BountyTokensWallet, this.BountyTokensPercent);
-    await crowdsale.addWallet(this.AdvisorsTokensWallet, this.AdvisorsTokensPercent);    
-    await crowdsale.addWallet(this.FoundersTokensWallet, this.FoundersTokensPercent);
-    await crowdsale.addWallet(this.CompanyTokensWallet, this.CompanyTokensPercent);
+    await crowdsale.addWallet(this.AdvisorsTokensWallet, this.AdvisorsTokensPercent);
+    await crowdsale.addWallet(this.BountyTokensWallet, this.BountyTokensPercent);   
+    await crowdsale.addWallet(teamwallet.address, this.TeamTokensPercent);
+    await crowdsale.addWallet(this.EndusersTokensWallet, this.EndusersTokensPercent);
     await crowdsale.setPercentRate(this.PercentRate);   
-    //await crowdsale.lockAddress(this.TeamTokensWallet, 180);
+    await crowdsale.setTeamWallet(teamwallet.address);
+    await teamwallet.setToken(token.address);
+    await teamwallet.setCrowdsale(crowdsale.address);
+    await teamwallet.setLockPeriod(180);
   });
 
   it ('transfer should call tokenFallback for registered contract', async function () {

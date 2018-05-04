@@ -12,36 +12,37 @@ import additional from './ito/additional';
 
 const token = artifacts.require('Token.sol');
 const crowdsale = artifacts.require('ITO.sol');
+const teamwallet = artifacts.require('TeamWallet.sol');
 
 
 contract('ITO - common test', function (accounts) {
   before(config);
-  common(token, crowdsale, accounts);
+  common(token, crowdsale, teamwallet, accounts);
 });
 
 contract('ITO - refundable crowdsale test', function (accounts) {
   before(config);
-  refundable(token, crowdsale, accounts);
+  refundable(token, crowdsale, teamwallet, accounts);
 });
 
 contract('ITO - bounty test', function (accounts) {
   before(config);
-  bounty(token, crowdsale, accounts);
+  bounty(token, crowdsale, teamwallet, accounts);
 });
 
 contract('ITO - milestonebonus features test', function (accounts) {
   before(config);
-  milestonebonus(token, crowdsale, accounts);
+  milestonebonus(token, crowdsale, teamwallet, accounts);
 });
 
 contract('ITO - hardcap milestonebonus features test', function (accounts) {
   before(config);
-  hardcapmilestonebonus(token, crowdsale, accounts);
+  hardcapmilestonebonus(token, crowdsale, teamwallet, accounts);
 });
 
 contract('ITO - additional features test', function (accounts) {
   before(config);
-  additional(token, crowdsale, accounts);
+  additional(token, crowdsale, teamwallet, accounts);
 });
 
 function config() {

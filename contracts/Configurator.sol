@@ -4,11 +4,13 @@ import './ownership/Ownable.sol';
 import './AssembledCommonSale.sol';
 import './Token.sol';
 import './ITO.sol';
+import './TeamWallet.sol';
 
 contract Configurator is Ownable {
 
   Token public token;
   ITO public ito;
+  TeamWallet public teamWallet;
 
   function deploy() public onlyOwner {
 
@@ -16,6 +18,7 @@ contract Configurator is Ownable {
 
     token = new Token();
     ito = new ITO();
+    teamWallet = new TeamWallet();
 
     token.setSaleAgent(ito);
 
@@ -36,13 +39,19 @@ contract Configurator is Ownable {
     ito.setWallet(0x3047e47EfC33cF8f6F9C3bdD1ACcaEda75B66f2A);
     ito.addWallet(0xe129b76dF45bFE35FE4a3fA52986CC8004538C98, 6);
     ito.addWallet(0x26Db091BF1Bcc2c439A2cA7140D76B4e909C7b4e, 2);
-    ito.addWallet(0x3C1c878C99A0155224190E9daefA79F5a4836F7f, 15);
+    ito.addWallet(teamWallet, 15);
     ito.addWallet(0x2A3b94CB5b9E10E12f97c72d6B5E09BD5A0E6bF1, 12);
     ito.setPercentRate(100);
     ito.setToken(token);
+    ito.setTeamWallet(teamWallet);
+
+    teamWallet.setToken(token);
+    teamWallet.setCrowdsale(ito);
+    teamWallet.setLockPeriod(180);
 
     token.transferOwnership(manager);
     ito.transferOwnership(manager);
+    teamWallet.transferOwnership(manager);
   }
 
 }

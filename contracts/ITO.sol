@@ -3,8 +3,15 @@ pragma solidity ^0.4.18;
 import './AssembledCommonSale.sol';
 import './SoftcapFeature.sol';
 import './ExtendedWalletsMintTokensFeature.sol';
+import './TeamWallet.sol';
 
 contract ITO is ExtendedWalletsMintTokensFeature, SoftcapFeature, AssembledCommonSale {
+
+  address public teamWallet;
+
+  function setTeamWallet (address _teamWallet) public onlyOwner{
+    teamWallet = _teamWallet;
+  }
 
   function mintTokensByETH(address to, uint _invested) internal returns(uint) {
     uint _tokens = super.mintTokensByETH(to, _invested);
@@ -19,6 +26,8 @@ contract ITO is ExtendedWalletsMintTokensFeature, SoftcapFeature, AssembledCommo
       withdraw();
       mintExtendedTokens();
       token.finishMinting();
+      TeamWallet tWallet = TeamWallet(teamWallet);
+      tWallet.start();
     }
   }
 

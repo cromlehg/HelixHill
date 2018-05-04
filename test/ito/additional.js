@@ -10,9 +10,10 @@ const should = require('chai')
   .use(require('chai-bignumber')(web3.BigNumber))
   .should();
 
-export default function (Token, Crowdsale, wallets) {
+export default function (Token, Crowdsale, TeamWallet, wallets) {
   let token;
   let crowdsale;
+  let teamwallet;
 
   before(async function () {
     // Advance to the next block to correctly read time in the solidity "now" function interpreted by testrpc
@@ -22,6 +23,7 @@ export default function (Token, Crowdsale, wallets) {
   beforeEach(async function () {
     token = await Token.new();
     crowdsale = await Crowdsale.new();
+    teamwallet = await TeamWallet.new();
     await token.setSaleAgent(crowdsale.address);
     await crowdsale.setToken(token.address);
     await crowdsale.setStart(latestTime());
@@ -41,10 +43,13 @@ export default function (Token, Crowdsale, wallets) {
     await crowdsale.setWallet(this.wallet);    
     await crowdsale.addWallet(this.AdvisorsTokensWallet, this.AdvisorsTokensPercent);
     await crowdsale.addWallet(this.BountyTokensWallet, this.BountyTokensPercent);   
-    await crowdsale.addWallet(this.TeamTokensWallet, this.TeamTokensPercent);
+    await crowdsale.addWallet(teamwallet.address, this.TeamTokensPercent);
     await crowdsale.addWallet(this.EndusersTokensWallet, this.EndusersTokensPercent);
     await crowdsale.setPercentRate(this.PercentRate);
-    //await crowdsale.lockAddress(this.TeamTokensWallet, 180);
+    await crowdsale.setTeamWallet(teamwallet.address);
+    await teamwallet.setToken(token.address);
+    await teamwallet.setCrowdsale(crowdsale.address);
+    await teamwallet.setLockPeriod(180);
   });
 
   it('should mintTokensByETHExternal by owner', async function () {
@@ -83,28 +88,27 @@ export default function (Token, Crowdsale, wallets) {
     balance.should.bignumber.equal(tokens(100));
   });
 
-/*
-  it('should lock bounty wallet address after finish', async function () {
+
+  it('should lock team wallet address after finish', async function () {
     const owner = await crowdsale.owner();
-    const investment = ether(10);
+    const investment = this.softcap;
     await crowdsale.sendTransaction({value: investment, from: wallets[1]});
     await crowdsale.finish({from: owner});
-    await token.transfer(wallets[2], tokens(100), {from: wallets[1]}).should.be.fulfilled;
-    const balance = await token.balanceOf(wallets[9]);
+    const balance = await token.balanceOf(teamwallet.address);
     balance.should.bignumber.greaterThan(tokens(100));
-    await token.transfer(wallets[3], tokens(100), {from: wallets[9]}).should.be.rejectedWith(EVMRevert);
+    await teamwallet.withdrawTokens(wallets[7]).should.be.rejectedWith(EVMRevert);
   });
 
-  it('should unlock bounty wallet address after 30 days', async function () {
+  it('should unlock team wallet address after 180 days', async function () {
     const owner = await crowdsale.owner();
-    const investment = ether(10);
+    const investment = this.softcap;
     await crowdsale.sendTransaction({value: investment, from: wallets[1]});
     await crowdsale.finish({from: owner});
-    await increaseTimeTo(latestTime() + duration.days(31));
-    await token.transfer(wallets[3], tokens(100), {from: wallets[9]}).should.be.fulfilled;
-    const balance = await token.balanceOf(wallets[3]);
-    balance.should.bignumber.equal(tokens(100));
+    await increaseTimeTo(latestTime() + duration.days(181));
+    const walletbalance = await token.balanceOf(teamwallet.address);
+    await teamwallet.withdrawTokens(wallets[7]).should.be.fulfilled;   
+    const balance = await token.balanceOf(wallets[7]);
+    balance.should.bignumber.equal(walletbalance);
   });
-*/
 
 }
