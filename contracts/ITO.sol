@@ -9,6 +9,8 @@ contract ITO is ExtendedWalletsMintTokensFeature, SoftcapFeature, AssembledCommo
 
   address public teamWallet;
 
+  bool public paused;
+
   function setTeamWallet (address _teamWallet) public onlyOwner{
     teamWallet = _teamWallet;
   }
@@ -33,7 +35,16 @@ contract ITO is ExtendedWalletsMintTokensFeature, SoftcapFeature, AssembledCommo
 
   function fallback() internal minInvestLimited(msg.value) returns(uint) {
     require(now >= start && now < endSaleDate());
+    require(!paused);
     return mintTokensByETH(msg.sender, msg.value);
+  }
+
+  function pauseITO() public onlyOwner {
+    paused = true;
+  }
+
+  function continueITO() public onlyOwner {
+    paused = false;
   }
 
 }

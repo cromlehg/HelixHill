@@ -111,4 +111,14 @@ export default function (Token, Crowdsale, TeamWallet, wallets) {
     balance.should.bignumber.equal(walletbalance);
   });
 
+  it('should pause and continue ITO', async function () {
+    const investment = ether(1);
+    await crowdsale.sendTransaction({value: investment, from: wallets[9]}).should.be.fulfilled;
+    await crowdsale.pauseITO();
+    await crowdsale.sendTransaction({value: investment, from: wallets[10]}).should.be.rejectedWith(EVMRevert);
+    await increaseTimeTo(latestTime() + duration.days(150));
+    await crowdsale.continueITO();
+    await crowdsale.sendTransaction({value: investment, from: wallets[10]}).should.be.fulfilled;
+  });
+
 }
