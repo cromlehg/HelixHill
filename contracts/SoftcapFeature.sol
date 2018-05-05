@@ -14,6 +14,8 @@ contract SoftcapFeature is InvestedProvider, WalletProvider {
 
   bool public refundOn;
 
+  bool public feePayed;
+
   uint public softcap;
 
   uint public constant devLimit = 7500000000000000000;
@@ -27,7 +29,10 @@ contract SoftcapFeature is InvestedProvider, WalletProvider {
   function withdraw() public {
     require(msg.sender == owner || msg.sender == devWallet);
     require(softcapAchieved);
-    devWallet.transfer(devLimit);
+    if(!feePayed) {
+      devWallet.transfer(devLimit);
+      feePayed = true;
+    }
     wallet.transfer(this.balance);
   }
 
