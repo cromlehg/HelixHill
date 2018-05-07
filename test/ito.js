@@ -48,14 +48,14 @@ contract('ITO - additional features test', function (accounts) {
 function config() {
   // variables list based on info from README
   this.start = unixTime('03 Jul 2018 00:00:00 GMT');
-  this.period = 415;
+  this.period = 446;
   this.price = tokens(1000);
   this.softcap = ether(2000);
   this.minInvestedLimit = ether(0.1);
   this.wallet = '0x3047e47EfC33cF8f6F9C3bdD1ACcaEda75B66f2A';
   this.AdvisorsTokensWallet = '0xe129b76dF45bFE35FE4a3fA52986CC8004538C98';
   this.BountyTokensWallet = '0x26Db091BF1Bcc2c439A2cA7140D76B4e909C7b4e';
-  this.TeamTokensWallet = '0x3C1c878C99A0155224190E9daefA79F5a4836F7f';
+  // this.TeamTokensWallet = '0x3C1c878C99A0155224190E9daefA79F5a4836F7f';
   this.EndusersTokensWallet = '0x2A3b94CB5b9E10E12f97c72d6B5E09BD5A0E6bF1';
   this.AdvisorsTokensPercent = 6;
   this.BountyTokensPercent = 2;

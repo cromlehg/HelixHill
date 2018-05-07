@@ -34,7 +34,7 @@ export default function (Token, Crowdsale, TeamWallet, CallbackTest, wallets) {
 
     await crowdsale.setSoftcap(this.softcap);
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);   
-    await crowdsale.addMilestone(5000, tokens(5000), 115);
+    await crowdsale.addMilestone(2000, tokens(5000), 146);
     await crowdsale.addMilestone(1000, tokens(2000), 30);
     await crowdsale.addMilestone(1000, tokens(1950), 30);
     await crowdsale.addMilestone(2000, tokens(1800), 30);

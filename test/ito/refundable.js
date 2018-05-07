@@ -29,7 +29,7 @@ export default function (Token, Crowdsale, TeamWallet, wallets) {
     await crowdsale.setStart(latestTime());
     await crowdsale.setSoftcap(this.softcap);
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);   
-    await crowdsale.addMilestone(5000, tokens(5000), 115);
+    await crowdsale.addMilestone(2000, tokens(5000), 146);
     await crowdsale.addMilestone(1000, tokens(2000), 30);
     await crowdsale.addMilestone(1000, tokens(1950), 30);
     await crowdsale.addMilestone(2000, tokens(1800), 30);
@@ -103,4 +103,24 @@ export default function (Token, Crowdsale, TeamWallet, wallets) {
     dev.should.be.bignumber.equal(7500000000000000000);
     post.minus(pre).plus(dev).should.be.bignumber.equal(investment);
   });
+
+  it('should forward funds to dev wallet just once', async function () {
+    const owner = await crowdsale.owner();
+    const investment = this.softcap;
+    const dev = 7500000000000000000;
+    await crowdsale.sendTransaction({value: investment, from: wallets[3]});
+    const pre = web3.eth.getBalance(this.wallet);
+    const predev = web3.eth.getBalance('0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770');
+    await crowdsale.withdraw({from: owner}).should.be.fulfilled;
+    const post = web3.eth.getBalance(this.wallet);
+    const postdev = web3.eth.getBalance('0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770');  
+    postdev.minus(predev).should.be.bignumber.equal(dev);
+    post.minus(pre).plus(dev).should.be.bignumber.equal(investment);
+    await crowdsale.sendTransaction({value: investment, from: wallets[3]});
+    await crowdsale.withdraw({from: owner}).should.be.fulfilled;
+    const post1 = web3.eth.getBalance(this.wallet);
+    const postdev1 = web3.eth.getBalance('0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770');  
+    postdev1.should.be.bignumber.equal(postdev);
+    post1.minus(post).should.be.bignumber.equal(investment);
+  });  
 }

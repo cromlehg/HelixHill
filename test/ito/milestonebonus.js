@@ -14,7 +14,7 @@ export default function (Token, Crowdsale, TeamWallet, wallets) {
   let crowdsale;
   let teamwallet;
   const milestones = [
-    {hardcap: ether(5000), price: tokens(5000), day: 114},
+    {hardcap: ether(2000), price: tokens(5000), day: 145},
     {hardcap: ether(1000), price: tokens(2000), day: 29},
     {hardcap: ether(1000), price: tokens(1950), day: 29},
     {hardcap: ether(2000), price: tokens(1800), day: 29},
@@ -41,7 +41,7 @@ export default function (Token, Crowdsale, TeamWallet, wallets) {
     await crowdsale.setStart(latestTime());
     await crowdsale.setSoftcap(this.softcap);
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);   
-    await crowdsale.addMilestone(5000, tokens(5000), 115);
+    await crowdsale.addMilestone(2000, tokens(5000), 146);
     await crowdsale.addMilestone(1000, tokens(2000), 30);
     await crowdsale.addMilestone(1000, tokens(1950), 30);
     await crowdsale.addMilestone(2000, tokens(1800), 30);

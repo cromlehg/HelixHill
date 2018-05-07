@@ -23,12 +23,12 @@ contract Configurator is Ownable {
     token.setSaleAgent(ito);
 
     ito.setStart(1530622800);
-    ito.addMilestone(5000, 5000000000000000000000, 115);
+    ito.addMilestone(2000, 5000000000000000000000, 146);
     ito.addMilestone(1000, 2000000000000000000000, 30);
     ito.addMilestone(1000, 1950000000000000000000, 30);
     ito.addMilestone(2000, 1800000000000000000000, 30);
     ito.addMilestone(3000, 1750000000000000000000, 30);
-    ito.addMilestone(3400, 1600000000000000000000, 30);
+    ito.addMilestone(3500, 1600000000000000000000, 30);
     ito.addMilestone(4000, 1550000000000000000000, 30);
     ito.addMilestone(4500, 1500000000000000000000, 30);
     ito.addMilestone(5000, 1450000000000000000000, 30);
