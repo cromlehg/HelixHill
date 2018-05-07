@@ -80,7 +80,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Start_                       : Jule 03 2018 13-00 GMT
 * _Wallet_                      : 0x3047e47EfC33cF8f6F9C3bdD1ACcaEda75B66f2A
 
-1. 146 days, 2000 tokens per ETH, 5000 ETH
+1. 146 days, 5000 tokens per ETH, 2000 ETH
 2. 30 days, 2000 tokens per ETH, 1000 ETH
 3. 30 days, 1950 tokens per ETH, 1000 ETH
 4. 30 days, 1800 tokens per ETH, 2000 ETH
