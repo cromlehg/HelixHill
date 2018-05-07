@@ -80,7 +80,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Start_                       : Jule 03 2018 13-00 GMT
 * _Wallet_                      : 0x3047e47EfC33cF8f6F9C3bdD1ACcaEda75B66f2A
 
-1. 115 days, 5000 tokens per ETH, 5000 ETH
+1. 146 days, 2000 tokens per ETH, 5000 ETH
 2. 30 days, 2000 tokens per ETH, 1000 ETH
 3. 30 days, 1950 tokens per ETH, 1000 ETH
 4. 30 days, 1800 tokens per ETH, 2000 ETH
@@ -92,3 +92,82 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 10. 30 days, 1400 tokens per ETH, 6000 ETH
 11. 30 days, 1000 tokens per ETH, 8000 ETH
 
+
+## Ropsten network configuration 
+
+### Links
+1. _Token_ - https://ropsten.etherscan.io/address/0x8bf596f8ee26dcaf991b2033df380c2f3964331c
+2. _ITO_ - https://ropsten.etherscan.io/address/0x39a2ab2cd1d00f919029368d46f0950b320354ce
+3. _TeamWallet_ - https://ropsten.etherscan.io/address/0xe93c960589d3df89faa9e3a86c9d89164fdd4667
+
+
+### Crowdsale stages
+
+#### ITO
+
+* _Minimal insvested limit_     : 0.1 ETH
+* _Softcap_                     : 1 ETH
+* _Start_                       : 07 May 2018 00:00:00 GMT
+* _Wallet_                      : 0x8fd94be56237ea9d854b23b78615775121dd1e82
+* _Advisors tokens wallet_      : 0x24a7774d0eba02846580A214eeca955214cA776C
+* _Bounty tokens wallet_        : 0x8Ba7Aa817e5E0cB27D9c146A452Ea8273f8EFF29
+* _Team tokens wallet_          : TeamWallet
+* _End-users tokens wallet_     : 0xaa8ed6878a202eF6aFC518a64D2ccB8D73f1f2Ca
+
+* _Advisors tokens percent_     :  6%
+* _Bounty tokens percent_       :  2%
+* _Team tokens percent_         : 15% (6 month locked)
+* _End-users tokens percent_    : 12%
+
+_Milestones_
+
+1. 15 days, 5000 tokens per ETH, 2000 ETH
+2. 30 days, 2000 tokens per ETH, 1 ETH
+3. 30 days, 1950 tokens per ETH, 1000 ETH
+4. 30 days, 1800 tokens per ETH, 2000 ETH
+5. 30 days, 1750 tokens per ETH, 3000 ETH
+6. 30 days, 1600 tokens per ETH, 3500 ETH
+7. 30 days, 1550 tokens per ETH, 4000 ETH
+8. 30 days, 1500 tokens per ETH, 4500 ETH
+9. 30 days, 1450 tokens per ETH, 5000 ETH
+10. 30 days, 1400 tokens per ETH, 6000 ETH
+11. 30 days, 1000 tokens per ETH, 8000 ETH
+
+##### Purchasers
+
+* 1 ETH => 5,000 tokens (milestone 1), gas = 176668
+https://ropsten.etherscan.io/tx/0x85964214bed8664a6bf98a29cf1d8dcd10a9d926b2ef2acb89b52a05989c372c
+
+* 1 ETH => 2,000 tokens (milestone 2, milestone 1 is closed because of ending period), gas = 102520
+https://ropsten.etherscan.io/tx/0x93b8793911728dd5336f1472c0aa21ea8ea3b9bac69e487a562542bb955e7737
+
+* 1 ETH => 1,950 tokens (milestone 3, milestone 2 is closed bacuase of reached hardcap), gas = 83977
+https://ropsten.etherscan.io/tx/0x34b6441f59b898aaa134dd3f8dc59deb8b395c446af5692d5ce9eff73ed1074a
+
+* 1 ETH => rejected txn, ITO paused, gas = 23838
+https://ropsten.etherscan.io/tx/0x71ddf4fc969e0417f02a2d863560ae1d8a457327ecfe40d8f782d6934e854211
+
+* 1 ETH => 1,950 token (continue ITO), gas = 68977
+https://ropsten.etherscan.io/tx/0x6036af9217c585194d2ba76ea1ec75432c48a26b2525638bf79f5438cca5d7ab
+
+##### Service operations
+
+* setStart, gas = 28154
+https://ropsten.etherscan.io/tx/0x51ee111c30f9dad647c16bde0bc236befb816b0625b831814352bd4068a6022e
+
+* pauseITO, gas = 27147
+https://ropsten.etherscan.io/tx/0x79f54ec8875f32740945bf8b654b0d4fdd8fd2eaa04b649e020e2edac06679f7
+
+* continueITO, gas = 27471
+https://ropsten.etherscan.io/tx/0x92de4c656e3d0574faafc352fd2e958fa046326daf8ed2d816cb87f60bb9e64c
+
+* finish, gas = 323467
+https://ropsten.etherscan.io/tx/0x924bb7ecc87efdab7b4f79dfa3d60e0a1a61d2c38b8de65b6cc9b8360c25974e
+
+### Token holders
+https://ropsten.etherscan.io/token/0x8bf596f8ee26dcaf991b2033df380c2f3964331c#balances
+
+##### Token transfers
+
+* withdrawTokens => rejected txn, Team Wallet is locked, gas = 23589
+https://ropsten.etherscan.io/tx/0x3355f49019ef41f1f0b8975b6294637b6238d3e216a0904f76ec3d95683b2b37
