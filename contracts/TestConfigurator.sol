@@ -48,8 +48,8 @@ contract TestConfigurator is Ownable {
 
     token.setSaleAgent(ito);
 
-    ito.setStart(1525392000);
-    ito.addMilestone(5000, 5000000000000000000000, 15);
+    ito.setStart(1525651200);
+    ito.addMilestone(2000, 5000000000000000000000, 15);
     ito.addMilestone(1, 2000000000000000000000, 30);
     ito.addMilestone(1000, 1950000000000000000000, 30);
     ito.addMilestone(2000, 1800000000000000000000, 30);
