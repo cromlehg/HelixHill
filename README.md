@@ -64,8 +64,9 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Contracts manager_           : 0xd6561BF111dAfe86A896D6c844F82AE4a5bbc707
 
 ### Links
-1. _Token_ - 
-2. _ITO_ -
+1. _Token_ - https://etherscan.io/token/0x588e9b40c9e16850ea25904d27e2412df72f62c5
+2. _ITO_ - https://etherscan.io/address/0x37268a039f845354e293922e0ca7fdd4ef0332f8
+3. _TeamWallet_ - https://etherscan.io/address/0x2dafaca37d6a84c5aa3fd800be027c10a5b15747
 
 ### Features
 * Manually mint tokens by owner or sale agent at any time until token minting finished. 
